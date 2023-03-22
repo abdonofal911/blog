@@ -1,11 +1,15 @@
 import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 const EditScreen = () => {
   return (
-    <div>
-      
-    </div>
+    <View>
+      <Text>Edit</Text>
+    </View>
   )
 }
+
+
+const styles = StyleSheet.create({});
 
 export default EditScreen
