@@ -9,6 +9,7 @@ const blogReducer = (state, action) => {
       return state.map((blogPost) => {
         return blogPost.id === action.payload.id ? action.payload : blogPost;
       });
+      //Add Blogpost is not needed mow because we use the API now 
     case "add_blogpost":
       return [
         ...state,
@@ -46,13 +47,16 @@ const addBlogPost = (dispatch) => {
 };
 
 const deleteBlogPost = (dispatch) => {
-  return (id) => {
+  return async (id) => {
+    await jsonServer.delete(`/blogposts/${id}`);
+
     dispatch({ type: "delete_blogpost", payload: id });
   };
 };
 
 const editBlogPost = (dispatch) => {
-  return (id, title, content, callback) => {
+  return async (id, title, content, callback) => {
+    await jsonServer.put(`/blogposts/${id}` , {title:title , content:content})
     dispatch({
       type: "edit_blogpost",
       payload: { id: id, title: title, content: content },
